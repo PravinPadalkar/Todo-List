@@ -3,6 +3,7 @@ const myForm  = document.querySelector('#taskForm')
 const titleInput = document.querySelector('#title')
 const descInput = document.querySelector('#description')
 const submitBtn = document.querySelector('.submit-btn')
+const searchInput = document.querySelector('#Search')
 let isEditingId = null;
 let taskList = [
   {
@@ -14,14 +15,14 @@ let taskList = [
   },
   {
     id: 2,
-    title: 'xyz',
+    title: 'abcd',
     description: "fddfdf",
     status : 'Pending',
     priority : 'normal'
   },
   {
     id: 3,
-    title: 'xyz',
+    title: 'abc',
     description: "fddfdf",
     status : 'Pending',
     priority : 'low'
@@ -44,12 +45,13 @@ const handleEdit = (id,title,description) =>{
   titleInput.value = title
   descInput.value = description
   submitBtn.innerHTML = 'Save'
-
-  taskList.map(({id,title,description})=>{
-    // if()
-  })
 }
-
+searchInput.addEventListener('input',(e)=>{ 
+  let query = e.target.value
+  console.log(query)
+  let filteredList = taskList.filter((item)=> item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()))
+  showData(filteredList)
+})
 //Form Submit
 myForm.addEventListener('submit',(e)=>{
   e.preventDefault()
@@ -68,6 +70,7 @@ myForm.addEventListener('submit',(e)=>{
       }
       return item
     })
+    submitBtn.innerHTML = 'Submit'
     showData(taskList)
     return
   } 
@@ -79,7 +82,7 @@ myForm.addEventListener('submit',(e)=>{
 
 function showData(data){
   tbody.innerHTML = ""
-  //For Search Functionality
+  //For Empty Data Functionality
   // if(data.length===0){
   //   tbody.innerHTML
   // }
