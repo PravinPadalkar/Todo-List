@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 *{
     margin: 0;
     padding: 0;
-    outline: none
+    outline: none;
+    font-family: "Roboto", sans-serif;
+}
+body{
+    margin-inline: 8px;
 }
 .container{
     max-width: 1300px;
@@ -15,11 +20,13 @@
   
 }
 .form-section{
-    max-width: 600px;
+    max-width: 700px;
     padding: 1rem 2rem ;
     margin-inline: auto;
     margin-block: 32px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    background-color: rgb(50, 255, 255);
+    border-radius: 8px;
 }
 .input-group{
     width: 100%;
@@ -56,16 +63,13 @@
     border: none;
     border-radius: 2rem;
     cursor: pointer;
-    margin-block: 2rem;
+    margin-block: 1.5rem;
 }
 
 
 /* table Section */
 .table-section{
-    width: 100%;
-    max-width: 600px;
-    margin-inline: auto;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    
     position: relative;
     z-index: 1;
     margin-top: 4rem;
@@ -76,13 +80,14 @@
 }
 .icons{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .myTable{
-    width: 100%;
+    width: 750px;
     border-collapse: collapse;
     white-space: nowrap;
     overflow: scroll;
+    margin-inline: auto;
     
 }
 .priority{
@@ -103,14 +108,12 @@
     background-color: rgb(202, 202, 202);
 }
 .myTable th,td {
- border: 1px solid black;
+ border: 1px solid goldenrod;
  padding: 1rem 1rem;
  
 }
 .myTable th{
-    background-color: rgb(220, 213, 213);
-}
+    background: linear-gradient(115deg, #fdfcfb, #e2d1c3);
+    text-align : left;
 
-@media (max-width: 1200px)
-{
 }

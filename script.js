@@ -1,9 +1,9 @@
-// import { taskList } from "./Data.js"
 const tbody = document.querySelector(".tbody")
 const myForm  = document.querySelector('#taskForm') 
 const titleInput = document.querySelector('#title')
 const descInput = document.querySelector('#description')
 const submitBtn = document.querySelector('.submit-btn')
+let isEditingId = null;
 let taskList = [
   {
     id: 1,
@@ -33,27 +33,44 @@ showData(taskList)
 //Delete Function
 const handleDelete= (id)=>{
   console.log(id)
-  taskList = taskList.filter((item)=> item.id!=id)
+  taskList = taskList.filter((item)=> item.id!==id)
   showData(taskList)
 }
 
 //edit Function
 const handleEdit = (id,title,description) =>{
-  console.log(id,title,description)
+  isEditingId = id;
+
+  titleInput.value = title
+  descInput.value = description
+  submitBtn.innerHTML = 'Save'
+
+  taskList.map(({id,title,description})=>{
+    // if()
+  })
 }
 
 //Form Submit
-myForm.addEventListener('submit',()=>{
+myForm.addEventListener('submit',(e)=>{
   e.preventDefault()
   let newEntry = {}
-  
   let formData = new FormData(myForm);
-  
   for (const [key,value] of formData)
   {
     newEntry[key] = value;
-    console.log(key, value)
   }
+  if(isEditingId)
+  {
+    taskList = taskList.map((item)=>{
+      if(item.id === isEditingId)
+      {
+        return {...newEntry,id:isEditingId};
+      }
+      return item
+    })
+    showData(taskList)
+    return
+  } 
   newEntry = {...newEntry , id: taskList.length+1}
   taskList.push(newEntry)
   
@@ -62,6 +79,10 @@ myForm.addEventListener('submit',()=>{
 
 function showData(data){
   tbody.innerHTML = ""
+  //For Search Functionality
+  // if(data.length===0){
+  //   tbody.innerHTML
+  // }
   data.map(({id,title,description,status,priority})=>{
     const tr = document.createElement('tr')
     const content =`<td>${id}</td>
