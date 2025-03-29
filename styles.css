@@ -9,15 +9,21 @@ body{
     margin-inline: 8px;
 }
 .container{
-    max-width: 1300px;
+    max-width: 800px;
     margin-inline: auto;
-    height: 98vh;
+    min-height: 98vh;
     gap: 8px;
 
 }
 .container h1{
     text-align: center;
   
+}
+.logo-section{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
 }
 .form-section{
     max-width: 700px;
@@ -65,13 +71,32 @@ body{
     cursor: pointer;
     margin-block: 1.5rem;
 }
+ 
 
+/* Search Section */
 
+.search-section {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 30px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    gap: 8px;
+}
+
+.search-section input{
+    padding: 2px 2px;
+    width: 300px;
+    height: 24px;
+    font-size: 1.05em;
+    
+}
+.search-section .search-icon{
+    cursor: pointer;
+}
 /* table Section */
 .table-section{
-    
-    position: relative;
-    z-index: 1;
     margin-top: 4rem;
 }
 
