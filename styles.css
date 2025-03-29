@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none
+}
+.container{
+    max-width: 1300px;
+    margin-inline: auto;
+    height: 98vh;
+    gap: 8px;
+
+}
+.container h1{
+    text-align: center;
+  
+}
+.form-section{
+    max-width: 600px;
+    padding: 1rem 2rem ;
+    margin-inline: auto;
+    margin-block: 32px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+.input-group{
+    width: 100%;
+    font-size: 1.1em;
+    margin-block : 1rem;
+}
+.input-group label{
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+.input-group input,.input-group select{
+    width: 100%;
+    height: 32px;
+    padding-left: 4px;
+}
+
+.input-group input[type=date]{
+    width: 40%;
+}
+.input-group input[type=date]::-webkit-datetime-edit {
+    padding: 8px;
+    font-size: 1.1em;
+}
+.input-group ::placeholder{
+   
+    font-size: 1.1em;
+}
+.submit-btn{
+    width: 100%;
+    height: 32px;
+    font-size: 1.2em;
+    background-color: rgb(19, 201, 19);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-block: 2rem;
+}
+
+
+/* table Section */
+.table-section{
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+}
+
+.edit-icon,.delete-icon{
+    cursor: pointer;
+}
+.icons{
+    display: flex;
+    justify-content: space-around;
+}
+.myTable{
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    overflow: scroll;
+    
+}
+.priority{
+    width: 80%;
+    padding: 2px 8px;
+    color: white;
+    border-radius: 16px;
+    text-align: center;
+    background-color: wheat;
+}
+.red-priority{
+    background-color: rgb(244, 16, 16);
+}
+.green-priority{
+    background-color: rgb(33, 205, 33);
+}
+.normal-priority{
+    background-color: rgb(202, 202, 202);
+}
+.myTable th,td {
+ border: 1px solid black;
+ padding: 1rem 1rem;
+ 
+}
+.myTable th{
+    background-color: rgb(220, 213, 213);
+}
+
+@media (max-width: 1200px)
+{
+}
