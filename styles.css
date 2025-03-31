@@ -13,7 +13,6 @@ body{
     margin-inline: auto;
     min-height: 98vh;
     gap: 8px;
-
 }
 .container h1{
     text-align: center;
@@ -107,9 +106,10 @@ body{
 /* table Section */
 .table-section{
     margin-top: 4rem;
+    overflow-x: auto;
 }
 
-.edit-icon,.delete-icon{
+.edit-icon , .delete-icon{
     cursor: pointer;
 }
 .icons{
@@ -120,7 +120,6 @@ body{
     width: 750px;
     border-collapse: collapse;
     white-space: nowrap;
-    overflow: scroll;
     margin-inline: auto;
     
 }
@@ -141,6 +140,9 @@ body{
 .normal-priority{
     background-color: rgb(202, 202, 202);
 }
+.myTable{
+    overflow-x: scroll;
+}
 .myTable th,td {
  border: 1px solid goldenrod;
  padding: 1rem 1rem;
@@ -157,12 +159,7 @@ body{
     margin-top: 20px;
     text-align: center
 }
-.completed{
-    background-color: green;
-}
-.pending{
-    background-color: red;
-}
+
 .status{
     border: 1px solid black;
     width: 15px;

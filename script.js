@@ -29,6 +29,19 @@ const clearForm=()=>{
   statusInput.value="pending"
   priorityInput.value = "normal"
 }
+//handle Check
+const handleCheck=(e,tr,id)=>{
+  tr.style.backgroundColor =   e.target.checked ? '#50C878' : ''
+  const statusCell = tr.querySelector('.status-cell')
+  statusCell.innerHTML = e.target.checked ? 'completed' : 'pending'
+  taskList = taskList.map((item)=>{
+      if(item.id==id){
+        return {...item , status : e.target.checked ? 'completed' :'pending' }
+      }
+      return item;
+  })
+  saveToLocalStorage(taskList)
+}
 //edit Function
 const handleEdit = (id,title,description) =>{
   isEditingId = id;
@@ -85,18 +98,19 @@ function showData(data){
     messageDiv.classList.add('message')
     tbody.append(messageDiv)
   }
-  data.map(({id,title,description,status,priority})=>{
+  data.map(({id,title,description,status,priority,isCheck})=>{
     const tr = document.createElement('tr')
+    tr.style.backgroundColor = status=='completed'? '#50C878' :''
     const content =`<td>${id}</td>
             <td>${title}</td>
             <td>${description}</td>
-            <td>${status}</td>
+            <td class='status-cell'>${status}</td>
             <td><div class="priority ${priority=='high' ? 'red-priority': priority=='low'? 'green-priority' : ''}">${priority}</div></td>
             <td>
               <div class='icons'>
               <i class="fas fa-edit edit-icon"></i>
               <i class="fa fa-trash delete-icon " aria-hidden="true data-${id}"></i>
-              <div class="status ${(status=="completed"?"completed":"pending")}" > </div>
+              <input type='checkbox' ${status!='completed'?'checked' : " "}checked  class="status check-icon" > </input>        
               </div>
             </td>`  
             tr.innerHTML = content;
@@ -106,6 +120,9 @@ function showData(data){
             editIcon.addEventListener('click',()=>handleEdit(id,title,description))
 
             const deleteIcon = tr.querySelector('.delete-icon') 
-            deleteIcon.addEventListener('click',()=>handleDelete(id))       
+            deleteIcon.addEventListener('click',()=>handleDelete(id))   
+            
+            const checkInput = tr.querySelector('.check-icon')
+            checkInput.addEventListener('click',(e)=>handleCheck(e,tr,id))
 })
 }
