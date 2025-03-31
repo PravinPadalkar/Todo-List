@@ -83,19 +83,26 @@ body{
     align-items: center;
     height: 30px;
     padding: 2px 4px;
-    border-radius: 4px;
+    border-radius: 16px;
     gap: 8px;
+    position: relative;
 }
 
 .search-section input{
-    padding: 2px 2px;
+    padding: 2px 8px;
     width: 300px;
     height: 24px;
     font-size: 1.05em;
+    border-radius: 14px;
     
+    outline: none;
+    border: 0.5px solid wheat;
 }
 .search-section .search-icon{
     cursor: pointer;
+    color: rgb(141, 139, 137);
+    position: absolute;
+    margin-right: 8px;
 }
 /* table Section */
 .table-section{
@@ -143,4 +150,22 @@ body{
     background: linear-gradient(115deg, #fdfcfb, #e2d1c3);
     text-align : left;
 
+}
+
+
+.message{
+    margin-top: 20px;
+    text-align: center
+}
+.completed{
+    background-color: green;
+}
+.pending{
+    background-color: red;
+}
+.status{
+    border: 1px solid black;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
 }

@@ -1,43 +1,34 @@
-const tbody = document.querySelector(".tbody")
 const myForm  = document.querySelector('#taskForm') 
 const titleInput = document.querySelector('#title')
 const descInput = document.querySelector('#description')
+const statusInput = document.querySelector('#status-input')
+const priorityInput = document.querySelector('#priority-input')
 const submitBtn = document.querySelector('.submit-btn')
+const tbody = document.querySelector(".tbody")
 const searchInput = document.querySelector('#Search')
+
 let isEditingId = null;
-let taskList = [
-  {
-    id: 1,
-    title: 'xyz',
-    description: "fddfdf",
-    status : 'Pending',
-    priority : 'high'
-  },
-  {
-    id: 2,
-    title: 'abcd',
-    description: "fddfdf",
-    status : 'Pending',
-    priority : 'normal'
-  },
-  {
-    id: 3,
-    title: 'abc',
-    description: "fddfdf",
-    status : 'Pending',
-    priority : 'low'
-  },
-];
-
+let taskList = JSON.parse(localStorage.getItem('data')) ?? []
 showData(taskList)
-
+//Storage utility Function
+const saveToLocalStorage=(list)=>{
+  localStorage.setItem('data',JSON.stringify(list))
+}
 //Delete Function
 const handleDelete= (id)=>{
-  console.log(id)
+  const res = confirm(`Do You To Delete Selected Task with ${id}?`)
+  if(res!='true') return
   taskList = taskList.filter((item)=> item.id!==id)
   showData(taskList)
+  saveToLocalStorage(taskList)
 }
 
+const clearForm=()=>{
+  titleInput.value = ""
+  descInput.value = ""
+  statusInput.value="pending"
+  priorityInput.value = "normal"
+}
 //edit Function
 const handleEdit = (id,title,description) =>{
   isEditingId = id;
@@ -72,20 +63,28 @@ myForm.addEventListener('submit',(e)=>{
     })
     submitBtn.innerHTML = 'Submit'
     showData(taskList)
+    isEditingId = null;
+    saveToLocalStorage(taskList)
+    clearForm()
     return
   } 
   newEntry = {...newEntry , id: taskList.length+1}
   taskList.push(newEntry)
   
   showData(taskList)
+  saveToLocalStorage(taskList)
+  clearForm()
 })
 
 function showData(data){
   tbody.innerHTML = ""
   //For Empty Data Functionality
-  // if(data.length===0){
-  //   tbody.innerHTML
-  // }
+  if(data.length===0){
+    const messageDiv = document.createElement('div');
+    messageDiv.innerHTML = `<h2>No Data Found......<h2/>`
+    messageDiv.classList.add('message')
+    tbody.append(messageDiv)
+  }
   data.map(({id,title,description,status,priority})=>{
     const tr = document.createElement('tr')
     const content =`<td>${id}</td>
@@ -96,7 +95,8 @@ function showData(data){
             <td>
               <div class='icons'>
               <i class="fas fa-edit edit-icon"></i>
-                <i class="fa fa-trash delete-icon " aria-hidden="true data-${id}"></i>
+              <i class="fa fa-trash delete-icon " aria-hidden="true data-${id}"></i>
+              <div class="status ${(status=="completed"?"completed":"pending")}" > </div>
               </div>
             </td>`  
             tr.innerHTML = content;
